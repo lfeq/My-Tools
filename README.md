@@ -1,6 +1,16 @@
 # My Tools
 
-## Create project structure
+## Install and Usage
+
+To install the package, open Package Manager in Unity and add using git link, and paste
+`https://github.com/lfeq/My-Tools`.
+
+After installation in the upper menu there should be a new context menu called `Tools`,
+click it and there are the set-up processes I use the most when starting a new project.
+
+## Included Behaviours
+
+### Create project structure
 
 This Custom Package lets me set up my new projects the way I like:
 
@@ -18,7 +28,7 @@ This Custom Package lets me set up my new projects the way I like:
 │   └── Plugins
 ```
 
-## Better Component Use
+### Better Component Use
 
 There is also a button to import the open source assets I use the
 most [Scene Ref Attribute](https://github.com/KyleBanks/scene-ref-attribute),
@@ -54,7 +64,7 @@ private void Awake()
 [SerializeField, Anywhere] private Button _button;
 ```
 
-## Better Singletons
+### Better Singletons
 
 The other open source package I like is [Unity Singleton](https://github.com/UnityCommunity/UnitySingleton).
 This one just saves me time when declaring singletons, instead of 
