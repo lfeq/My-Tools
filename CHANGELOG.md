@@ -1,3 +1,7 @@
+## [1.1.0] - 03-03-2025
+### Initialize Repo
+- New option creates `.gitignore` and runs `git init`
+
 ## [1.0.0] - 03-03-2025
 ### First release
 - Allows the user to create a `_Project` folder, with the folders
