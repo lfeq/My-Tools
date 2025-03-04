@@ -22,6 +22,7 @@ namespace LorenzTools {
             );
             Folders.CreateDefault("External");
             Folders.CreateDefault("Plugins");
+            AssetDatabase.Refresh();
         }
 
         [MenuItem("Tools/Setup/Install My Favorite Open Source")]
