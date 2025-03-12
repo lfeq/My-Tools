@@ -3,7 +3,7 @@
 ## Install and Usage
 
 To install the package, open Package Manager in Unity and add using git link, and paste
-`https://github.com/lfeq/My-Tools`.
+`https://github.com/lfeq/My-Tools.git`.
 
 After installation in the upper menu there should be a new context menu called `Tools`,
 click it and there are the set-up processes I use the most when starting a new project.
