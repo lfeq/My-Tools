@@ -135,6 +135,9 @@ crashlytics-build.properties
         private static class Folders {
             public static void CreateDefault(string root, params string[] folders) {
                 var fullPath = Path.Combine(Application.dataPath, root);
+                if (!Exists(fullPath)) {
+                    CreateDirectory(fullPath);
+                }
                 foreach (string folder in folders) {
                     var path = Path.Combine(fullPath, folder);
                     if (!Exists(path)) {

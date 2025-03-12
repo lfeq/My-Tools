@@ -1,3 +1,7 @@
+## [1.1.1] - 12-03-2025
+### Fixed Folder Creation Bug
+- Fixed a bug where the `External` and `Plugins` folder would not be created.
+
 ## [1.1.0] - 03-03-2025
 ### Initialize Repo
 - New option creates `.gitignore` and runs `git init`
