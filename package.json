@@ -1,18 +1,17 @@
 {
   "name": "com.lorenz_equihua.my_tools",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "displayName": "My Tools",
   "description": "Tools I use when I start a new project",
   "unity": "2022.1",
   "dependencies": {
   },
-  "keywords": [
-    "keyword1",
-    "keyword2",
-    "keyword3"
-  ],
   "author": {
     "name": "Lorenz Equihua",
     "email": "lorenz.equihua@artek.edu.mx"
-  }
+  },
+  "changelogUrl": "https://github.com/lfeq/Improved-Game-Manager/blob/main/CHANGELOG.md",
+  "license": "MIT",
+  "licensesUrl": "https://github.com/lfeq/Improved-Game-Manager/blob/main/LICENSE.md",
+  "documentationUrl": "https://github.com/lfeq/Improved-Game-Manager/blob/main/README.md"
 }
