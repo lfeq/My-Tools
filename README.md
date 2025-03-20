@@ -81,3 +81,9 @@ public class ExampleSingletonMonobehaviour : PersistentMonoSingleton<ExampleSing
 You can create a GitHub repository with just one click, as this 
 button creates the `.gitignore` and runs `git init` command. I 
 just have to add it to a new repo.
+
+## Change Semantic Versioning with One Click
+
+I added a submenu to the `Tools` menu that lets me change the semantic versioning 
+of the project with just one click. This is useful when I want to change the version
+of the project and I don't want to go to the project settings and change it manually.
