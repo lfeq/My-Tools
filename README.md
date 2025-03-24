@@ -73,7 +73,7 @@ creating my own singletons all the time, I just use this package
 ```csharp
 public class ExampleSingletonMonobehaviour : PersistentMonoSingleton<ExampleSingletonMonobehaviour> {
     void Start(){}
-    void Update {}
+    void Update() {}
 ```
 
 ### Scene Reference
