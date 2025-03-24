@@ -9,7 +9,7 @@ using UnityEditor.PackageManager.Requests;
 using static System.IO.Directory;
 using Debug = UnityEngine.Debug;
 
-namespace LorenzTools {
+namespace MyTools {
     public static class Setup {
         [MenuItem("Tools/Setup/Create Default Folders")]
         public static void CreateDefaultFolders() {

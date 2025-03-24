@@ -1,3 +1,9 @@
+## [1.3.1] - 24/03/2025
+
+### Fixed a Bug that Prevented Builds
+
+- Moved the code to Editor folder to prevent it from being included in the build and causing errors.
+
 ## [1.3.0] - 23/03/2025
 
 ### Added New Open Source Package and Extension Methods
