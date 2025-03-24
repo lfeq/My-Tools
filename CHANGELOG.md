@@ -1,3 +1,18 @@
+## [1.3.0] - 23/03/2025
+
+### Added New Open Source Package and Extension Methods
+
+- Added a new open source package to the project. This package is
+  called [SceneReference](https://github.com/starikcetin/Eflatun.SceneReference). It allows you to reference scenes
+  directly without using strings.
+- Added new extension methods
+  from [Adam Myhre Unity Utils](https://github.com/adammyhre/Unity-Utils/tree/master/UnityUtils/Scripts/Extensions), as
+  there are some really useful ones. For example:
+
+```csharp 
+var myComponent = gameObject.GetOrAdd<MyComponent>();
+```
+
 ## [1.2.0] - 19/03/2025
 
 ### Added Version Management

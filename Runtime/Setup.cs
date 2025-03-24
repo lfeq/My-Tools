@@ -31,7 +31,8 @@ namespace LorenzTools {
         public static void InstallOpenSource() {
             Packages.InstallPackages(new[] {
                 "git+https://github.com/KyleBanks/scene-ref-attribute",
-                "git+https://github.com/UnityCommunity/UnitySingleton.git"
+                "git+https://github.com/UnityCommunity/UnitySingleton.git",
+                "git+https://github.com/starikcetin/Eflatun.SceneReference.git#4.1.1"
                 // Add more
             });
         }

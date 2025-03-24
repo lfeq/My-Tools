@@ -34,7 +34,7 @@ There is also a button to import the open source assets I use the
 most [Scene Ref Attribute](https://github.com/KyleBanks/scene-ref-attribute),
 this allows me to use ValidatedMonoBehaviour, this helps to prevent
 using `GetComponent()` in start for every component, as it can get
-expensive in large projects. 
+expensive in large projects.
 
 ```csharp
 // BEFORE
@@ -67,7 +67,7 @@ private void Awake()
 ### Better Singletons
 
 The other open source package I like is [Unity Singleton](https://github.com/UnityCommunity/UnitySingleton).
-This one just saves me time when declaring singletons, instead of 
+This one just saves me time when declaring singletons, instead of
 creating my own singletons all the time, I just use this package
 
 ```csharp
@@ -76,14 +76,29 @@ public class ExampleSingletonMonobehaviour : PersistentMonoSingleton<ExampleSing
     void Update {}
 ```
 
+### Scene Reference
+
+This open source package is called [SceneReference](https://github.com/starikcetin/Eflatun.SceneReference), and it
+allows you to reference scenes directly without using strings.
+
 ## Create Repository
 
-You can create a GitHub repository with just one click, as this 
-button creates the `.gitignore` and runs `git init` command. I 
+You can create a GitHub repository with just one click, as this
+button creates the `.gitignore` and runs `git init` command. I
 just have to add it to a new repo.
 
 ## Change Semantic Versioning with One Click
 
-I added a submenu to the `Tools` menu that lets me change the semantic versioning 
+I added a submenu to the `Tools` menu that lets me change the semantic versioning
 of the project with just one click. This is useful when I want to change the version
 of the project and I don't want to go to the project settings and change it manually.
+
+## Useful Extension Methods
+
+Extension methods
+from [Adam Myhre Unity Utils](https://github.com/adammyhre/Unity-Utils/tree/master/UnityUtils/Scripts/Extensions), as
+there are some really useful ones. For example:
+
+```csharp 
+var myComponent = gameObject.GetOrAdd<MyComponent>();
+```
