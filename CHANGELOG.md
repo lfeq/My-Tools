@@ -1,8 +1,15 @@
+## [1.3.2] - 26/03/2025
+
+### Fixed a Bug that Prevented External and Plugins Folder from being Added to Source Control
+
+- Fixed a bug where the `External` and `Plugins` folder would not be added to source control because of `gitignore`
+  rules.
+
 ## [1.3.1] - 24/03/2025
 
 ### Fixed a Bug that Prevented Builds
 
-- Moved the code to Editor folder to prevent it from being included in the build and causing errors.
+- Move the code to Editor folder to prevent it from being included in the build and causing errors.
 
 ## [1.3.0] - 23/03/2025
 
