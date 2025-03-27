@@ -57,9 +57,15 @@ out
 #
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
 Assets/*
+# Exclude _Project folder and its .meta
 !Assets/_Project/
+!Assets/_Project.meta
+# Exclude External folder and its .meta
 !Assets/External/
+!Assets/External.meta
+# Exclude Plugins folder and its .meta
 !Assets/Plugins/
+!Assets/Plugins.meta
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
