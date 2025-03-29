@@ -1,3 +1,11 @@
+## [1.3.3] - 28/03/2025
+
+### Added Assembly Definition to Extension Methods
+
+- Added assembly definition to the extension methods folder.
+  This allows you to use the extension methods in other
+  projects without having to add the entire project as a dependency.
+
 ## [1.3.2] - 26/03/2025
 
 ### Fixed a Bug that Prevented External and Plugins Folder from being Added to Source Control
