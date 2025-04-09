@@ -33,6 +33,7 @@ namespace MyTools {
                 "git+https://github.com/KyleBanks/scene-ref-attribute",
                 "git+https://github.com/UnityCommunity/UnitySingleton.git",
                 "git+https://github.com/starikcetin/Eflatun.SceneReference.git#4.1.1"
+                "git+https://github.com/adammyhre/Unity-Improved-Timers.git"
                 // Add more
             });
         }
