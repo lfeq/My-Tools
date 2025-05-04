@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -41,8 +42,8 @@ namespace MyTools {
             AssetDatabase.Refresh();
 
             // Move Input System actions file to the Settings folder
-            var pathToInputActions = "Assets/InputSystem_Actions.inputactions";
-            var destination = "Assets/_Project/Settings/InputSystem_Actions.inputactions";
+            const string pathToInputActions = "Assets/InputSystem_Actions.inputactions";
+            const string destination = "Assets/_Project/Settings/InputSystem_Actions.inputactions";
             AssetDatabase.MoveAsset(pathToInputActions, destination);
 
             // Delete the Readme asset
@@ -71,7 +72,7 @@ namespace MyTools {
         [MenuItem("Tools/Setup/Initialize Github Repository")]
         public static void InitializeGitRepo() {
             // Define the content of the .gitignore file
-            var gitIgnoreContent = @"
+            const string gitIgnoreContent = @"
             ### Processing ###
             .DS_Store
             applet
@@ -171,7 +172,16 @@ namespace MyTools {
             File.WriteAllText(Application.dataPath + "/../.gitignore", gitIgnoreContent);
 
             // Initialize a Git repository
-            Process.Start("git", "init")?.WaitForExit();
+            try {
+                var process = Process.Start("git", "init");
+                process?.WaitForExit();
+
+                if (process?.ExitCode != 0) {
+                    Debug.LogError($"Git init failed with exit code: {process?.ExitCode}");
+                }
+            } catch (Exception e) {
+                Debug.LogError("Failed to initialize Git repository: " + e.Message);
+            }
         }
 
         /// <summary>
