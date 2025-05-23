@@ -1,6 +1,6 @@
 using NUnit.Framework;
 using UnityEngine;
-using System.IO;
+using System.IO; // Ensured System.IO is used for Path.Combine
 using MyTools; // Assuming Setup class is in MyTools namespace
 
 public class SetupTests
@@ -10,7 +10,8 @@ public class SetupTests
     [SetUp]
     public void SetUp()
     {
-        gitignorePath = Application.dataPath + "/../.gitignore";
+        // Refactored to use Path.Combine
+        gitignorePath = Path.Combine(Application.dataPath, "..", ".gitignore");
     }
 
     [TearDown]
