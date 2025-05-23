@@ -5,12 +5,26 @@ using MyTools; // Assuming Setup class is in MyTools namespace
 
 public class SetupTests
 {
+    private string gitignorePath;
+
+    [SetUp]
+    public void SetUp()
+    {
+        gitignorePath = Application.dataPath + "/../.gitignore";
+    }
+
+    [TearDown]
+    public void TearDown()
+    {
+        if (File.Exists(gitignorePath))
+        {
+            File.Delete(gitignorePath);
+        }
+    }
+
     [Test]
     public void InitializeGitRepo_GeneratesGitignoreWithoutLeadingWhitespace()
     {
-        // Arrange
-        string gitignorePath = Application.dataPath + "/../.gitignore";
-
         // Act
         Setup.InitializeGitRepo();
 
