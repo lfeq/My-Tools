@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
@@ -61,7 +62,9 @@ namespace MyTools {
                 "git+https://github.com/KyleBanks/scene-ref-attribute",
                 "git+https://github.com/UnityCommunity/UnitySingleton.git",
                 "git+https://github.com/starikcetin/Eflatun.SceneReference.git#4.1.1",
-                "git+https://github.com/adammyhre/Unity-Improved-Timers.git"
+                "git+https://github.com/adammyhre/Unity-Improved-Timers.git",
+                "git+https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
+                "com.unity.probuilder"
                 // Add more
             });
         }
@@ -174,11 +177,11 @@ crashlytics-build.properties
             try {
                 var process = Process.Start("git", "init");
                 process?.WaitForExit();
-
                 if (process?.ExitCode != 0) {
                     Debug.LogError($"Git init failed with exit code: {process?.ExitCode}");
                 }
-            } catch (Exception e) {
+            }
+            catch (Exception e) {
                 Debug.LogError("Failed to initialize Git repository: " + e.Message);
             }
         }
@@ -240,43 +243,92 @@ crashlytics-build.properties
         /// Provides utility methods for installing Unity packages.
         /// </summary>
         private static class Packages {
-            static AddRequest Request;
-            static Queue<string> PackagesToInstall = new();
+            // Key to store our package queue in the editor's session state
+            private const string PackagesToInstallKey = "MyTools.PackagesToInstall";
+            private static AddRequest _currentRequest;
 
             /// <summary>
-            /// Installs a list of Unity packages using their Git URLs.
+            /// This method is called automatically by Unity whenever scripts are loaded.
+            /// It acts as a recovery mechanism to continue installations after a script reload.
             /// </summary>
-            /// <param name="packages">An array of package Git URLs to install.</param>
-            public static void InstallPackages(string[] packages) {
-                foreach (var package in packages) {
-                    PackagesToInstall.Enqueue(package);
+            [InitializeOnLoadMethod]
+            private static void InitializeAndContinue() {
+                // Using delayCall ensures that we wait until the editor is ready before proceeding.
+                EditorApplication.delayCall += ContinueInstallation;
+            }
+
+            /// <summary>
+            /// Installs a list of Unity packages.
+            /// </summary>
+            /// <param name="packages">An array of package identifiers (names or git URLs) to install.</param>
+            public static void InstallPackages(IEnumerable<string> packages) {
+                var packageList = packages.ToList();
+                if (!packageList.Any()) {
+                    Debug.Log("No packages to install.");
+                    return;
                 }
 
-                // Start the installation of the first package
-                if (PackagesToInstall.Count > 0) {
-                    Request = Client.Add(PackagesToInstall.Dequeue());
+                // Store the full list of packages in SessionState, using a semicolon as a separator.
+                // This list will persist across script reloads.
+                SessionState.SetString(PackagesToInstallKey, string.Join(";", packageList));
+
+                // Start the installation process.
+                ContinueInstallation();
+            }
+
+            /// <summary>
+            /// Continues the installation process by processing the next package in the queue.
+            /// </summary>
+            private static void ContinueInstallation() {
+                // Don't start a new installation if one is already in progress.
+                if (_currentRequest != null && !_currentRequest.IsCompleted) {
+                    return;
+                }
+
+                // Retrieve the list of packages from SessionState.
+                var queueData = SessionState.GetString(PackagesToInstallKey, "");
+                if (string.IsNullOrEmpty(queueData)) {
+                    // If the queue is empty, we are done.
+                    return;
+                }
+                var packagesToInstall = new Queue<string>(queueData.Split(';'));
+                if (packagesToInstall.Count > 0) {
+                    // Get the next package to install.
+                    var packageName = packagesToInstall.Dequeue();
+
+                    // Update the session state with the remaining packages.
+                    SessionState.SetString(PackagesToInstallKey, string.Join(";", packagesToInstall));
+                    Debug.Log($"Requesting package: {packageName}...");
+                    _currentRequest = Client.Add(packageName);
+
+                    // Subscribe to the editor's update loop to monitor the request's progress.
                     EditorApplication.update += Progress;
+                }
+                else {
+                    // All packages are installed, clear the key from SessionState.
+                    Debug.Log("All packages installed successfully.");
+                    SessionState.EraseString(PackagesToInstallKey);
                 }
             }
 
             /// <summary>
-            /// Tracks the progress of the package installation and installs the next package in the queue.
+            /// Monitors the progress of the current package installation request.
             /// </summary>
-            static async void Progress() {
-                if (Request.IsCompleted) {
-                    if (Request.Status == StatusCode.Success)
-                        Debug.Log("Installed: " + Request.Result.packageId);
-                    else if (Request.Status >= StatusCode.Failure)
-                        Debug.Log(Request.Error.message);
+            private static void Progress() {
+                // Wait until the current request is completed.
+                if (_currentRequest.IsCompleted) {
+                    if (_currentRequest.Status == StatusCode.Success) {
+                        Debug.Log($"Installed: {_currentRequest.Result.displayName}");
+                    }
+                    else if (_currentRequest.Status >= StatusCode.Failure) {
+                        Debug.LogError($"Failed to install package: {_currentRequest.Error.message}");
+                    }
+
+                    // Unsubscribe from the update loop to stop checking.
                     EditorApplication.update -= Progress;
 
-                    // If there are more packages to install, start the next one
-                    if (PackagesToInstall.Count > 0) {
-                        // Add delay before next package install
-                        await Task.Delay(1000);
-                        Request = Client.Add(PackagesToInstall.Dequeue());
-                        EditorApplication.update += Progress;
-                    }
+                    // Use delayCall to trigger the next installation. This is safer than a direct call.
+                    EditorApplication.delayCall += ContinueInstallation;
                 }
             }
         }
