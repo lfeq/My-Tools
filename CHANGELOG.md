@@ -1,5 +1,11 @@
 ## [1.4.1] - 08/05/2026
 
+### New Features
+- Added `Set Root Namespace` tool to automatically configure the project's root namespace based on the product name in CamelCase.
+
+### Added Packages
+- Added [LitMotion](https://github.com/annulusgames/LitMotion) to the open-source packages list.
+
 ### Fixed Setup Error
 
 - Fixed an issue in `CreateDefaultFolders` where moving the `Assets/Settings` folder would fail with a "Destination path name does already exist" error by ensuring the folder is only created if it wasn't successfully moved.

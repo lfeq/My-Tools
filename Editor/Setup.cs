@@ -53,6 +53,20 @@ namespace MyTools {
         }
 
         /// <summary>
+        /// Sets the Root Namespace in project settings based on the Product Name in CamelCase.
+        /// </summary>
+        [MenuItem("Tools/Setup/Set Root Namespace")]
+        public static void SetRootNamespace() {
+            var productName = PlayerSettings.productName;
+            var rootNamespace = string.Join("", productName
+                .Split(new[] { ' ', '-', '_' }, StringSplitOptions.RemoveEmptyEntries)
+                .Select(s => char.ToUpper(s[0]) + s.Substring(1)));
+
+            EditorSettings.projectGenerationRootNamespace = rootNamespace;
+            Debug.Log($"Root Namespace set to: {rootNamespace}");
+        }
+
+        /// <summary>
         /// Installs a list of open-source Unity packages using their Git URLs.
         /// </summary>
         [MenuItem("Tools/Setup/Install My Favorite Open Source")]
@@ -63,6 +77,7 @@ namespace MyTools {
                 "git+https://github.com/starikcetin/Eflatun.SceneReference.git#4.1.1",
                 "git+https://github.com/adammyhre/Unity-Improved-Timers.git",
                 "git+https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
+                "git+https://github.com/annulusgames/LitMotion.git?path=src/LitMotion/Assets/LitMotion",
                 "com.unity.probuilder"
                 // Add more
             });
