@@ -23,7 +23,7 @@ namespace MyTools {
         [MenuItem("Tools/Setup/Create Default Folders")]
         public static void CreateDefaultFolders() {
             // Create main project folders
-            Folders.Create("_Project", "Audio", "Settings");
+            Folders.Create("_Project", "Audio");
             Folders.Create("Features", "Player", "Enemies", "Combat", "Inventory", "UI", "Core");
             Folders.Create("Features/Player", "Scripts", "Prefabs", "Animations", "Art");
             Folders.Create("Scenes");
@@ -33,6 +33,9 @@ namespace MyTools {
 
             // Move specific folders into the _Project folder
             Folders.Move("_Project", "Settings");
+
+            // Ensure Settings folder exists in case there was no Assets/Settings to move
+            Folders.Create("_Project", "Settings");
 
             // Delete unnecessary folders
             Folders.Delete("TutorialInfo");
