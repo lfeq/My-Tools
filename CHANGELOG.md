@@ -1,3 +1,9 @@
+## [1.4.1] - 08/05/2026
+
+### Fixed Setup Error
+
+- Fixed an issue in `CreateDefaultFolders` where moving the `Assets/Settings` folder would fail with a "Destination path name does already exist" error by ensuring the folder is only created if it wasn't successfully moved.
+
 ## [1.4.0] - 08/05/2026
 
 ### Updated Default Folder Structure
