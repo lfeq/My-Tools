@@ -12,20 +12,30 @@ click it and there are the set-up processes I use the most when starting a new p
 
 ### Create project structure
 
-This Custom Package lets me set up my new projects the way I like:
+This Custom Package lets me set up my new projects the way I like, based on the idea from [this article](https://unityengineering.substack.com/p/the-folder-structure-mistake-that?r=pq7e6&shareImageVariant=overlay&triedRedirect=true):
 
-```
-├── Assets
-│   ├── _Project
-│   │   ├── _Scripts
-│   │   ├── Art
-│   │   ├── Materials
-│   │   ├── Scriptable Objects
-│   │   ├── Prefabs
-│   │   ├── Scenes
-│   │   └── Settings
-│   ├── External
-│   └── Plugins
+```text
+Assets/
+├── _Project/
+│   ├── Audio/
+│   └── Settings/
+│
+├── Features/
+│   ├── Player/
+│   │   ├── Scripts/
+│   │   ├── Prefabs/
+│   │   ├── Animations/
+│   │   └── Art/
+│   │
+│   ├── Enemies/
+│   ├── Combat/
+│   ├── Inventory/
+│   ├── UI/
+│   └── Core/
+│
+├── Scenes/
+├── Plugins/
+└── Sandbox/
 ```
 
 ### Better Component Use

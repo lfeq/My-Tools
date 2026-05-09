@@ -1,3 +1,11 @@
+## [1.4.0] - 08/05/2026
+
+### Updated Default Folder Structure
+
+- Updated the `CreateDefaultFolders` method to generate a more scalable folder structure based on [this article](https://unityengineering.substack.com/p/the-folder-structure-mistake-that?r=pq7e6&shareImageVariant=overlay&triedRedirect=true).
+- Replaced the old monolithic `_Project` structure with a modular `Features`-based structure.
+- Updated `.gitignore` generation to track the new folders correctly.
+
 ## [1.3.3] - 28/03/2025
 
 ### Added Assembly Definition to Extension Methods

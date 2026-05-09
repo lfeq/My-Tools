@@ -23,19 +23,15 @@ namespace MyTools {
         [MenuItem("Tools/Setup/Create Default Folders")]
         public static void CreateDefaultFolders() {
             // Create main project folders
-            Folders.Create("_Project", "Animations",
-                "Art",
-                "Materials",
-                "ScriptableObjects",
-                "_Scripts",
-                "Prefabs"
-            );
-            Folders.Create("External");
+            Folders.Create("_Project", "Audio", "Settings");
+            Folders.Create("Features", "Player", "Enemies", "Combat", "Inventory", "UI", "Core");
+            Folders.Create("Features/Player", "Scripts", "Prefabs", "Animations", "Art");
+            Folders.Create("Scenes");
             Folders.Create("Plugins");
+            Folders.Create("Sandbox");
             AssetDatabase.Refresh();
 
             // Move specific folders into the _Project folder
-            Folders.Move("_Project", "Scenes");
             Folders.Move("_Project", "Settings");
 
             // Delete unnecessary folders
@@ -95,12 +91,18 @@ Assets/*
 # Exclude _Project folder and its .meta
 !Assets/_Project/
 !Assets/_Project.meta
-# Exclude External folder and its .meta
-!Assets/External/
-!Assets/External.meta
+# Exclude Features folder and its .meta
+!Assets/Features/
+!Assets/Features.meta
+# Exclude Scenes folder and its .meta
+!Assets/Scenes/
+!Assets/Scenes.meta
 # Exclude Plugins folder and its .meta
 !Assets/Plugins/
 !Assets/Plugins.meta
+# Exclude Sandbox folder and its .meta
+!Assets/Sandbox/
+!Assets/Sandbox.meta
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
