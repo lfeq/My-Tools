@@ -1,3 +1,9 @@
+## [1.4.2] - 11/06/2026
+
+### Removed Tests
+
+- Removed the `Tests` folder. The `SetupTests` test was destructive: it targeted the real project `.gitignore` and deleted it in `TearDown` on every run.
+
 ## [1.4.1] - 08/05/2026
 
 ### New Features
